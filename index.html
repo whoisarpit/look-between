@@ -1,0 +1,44 @@
+<html>
+  <body>
+    <div>Drag this bookmarklet to your taskbar</div>
+    <a href="javascript:(function()%7Bconst%20n%3D%5B%22qwertyuiop%22%2C%22asdfghjkl%22%2C%22zxcvbnm%22%5D%3Bfunction%20e(e)%7Bconst%20o%3Dn.map((n%3D%3En.indexOf(e)))%2Ct%3Do.findIndex((n%3D%3E-1!%3D%3Dn))%3Breturn%5Bt%2Co%5Bt%5D%5D%7Dconst%20o%3Ddocument.body%7C%7C%240%3Bo.innerHTML%3Do.innerHTML.replace(%2FLook%20between%20(the%20)%3F(%5Cw)%20and%20(the%20)%3F(%5Cw)%2Fgi%2C((...o)%3D%3E%7Bconst%20t%3Do%5B0%5D%2C%5Bc%2Cr%5D%3Do.slice(1).filter((n%3D%3En%26%261%3D%3D%3Dn.length)).map((n%3D%3En.toLowerCase()))%2Ci%3Dfunction(o%2Ct)%7Bconst%5Bc%2Cr%5D%3De(o)%2C%5Bi%2Cl%5D%3De(t)%3Bif(c%3D%3D%3Di%26%26r%3Cl)return%20n%5Bc%5D.slice(r%2B1%2Cl)%3Breturn%20null%7D(c%2Cr)%3Breturn%20console.log(i%2Co)%2Ci%3F%60%24%7Bt%7D%20%5B%5B%24%7Bi%7D%5D%5D%60%3At%7D))%7D)()%3B">bookmarklet</a>
+    <div style="margin-top: 10px">
+      Original code:
+      <pre>
+        function replaceBody() {
+          const qwertyRows = ["qwertyuiop", "asdfghjkl", "zxcvbnm"];
+          function findPos(ch) {
+            const place = qwertyRows.map((row) => row.indexOf(ch));
+            const row = place.findIndex((place) => place !== -1);
+            return [row, place[row]];
+          }
+          function getText(ch1, ch2) {
+            const [r1, c1] = findPos(ch1);
+            const [r2, c2] = findPos(ch2);
+            if (r1 === r2 && c1 < c2) {
+              const row = qwertyRows[r1];
+              return row.slice(c1 + 1, c2);
+            }
+            return null;
+          }
+        
+          const regex = /Look between (the )?(\w) and (the )?(\w)/gi;
+          
+          const e = document.body || $0;
+          e.innerHTML = e.innerHTML.replace(regex, (...params) => {
+            const orig = params[0];
+            const [ch1, ch2] = params
+              .slice(1)
+              .filter((x) => x && x.length === 1)
+              .map((x) => x.toLowerCase());
+            const text = getText(ch1, ch2);
+            console.log(text, params);
+            return text ? `${orig} [[${text}]]` : orig;
+          });
+        }
+        
+        replaceBody();
+      </pre>
+    </div>
+  </body>
+</html>
