@@ -1,7 +1,7 @@
 <html>
   <body>
     <div>Drag this bookmarklet to your Bookmarks bar</div>
-    <a href="javascript:(function()%7Bconst%20n%3D%5B%22qwertyuiop%22%2C%22asdfghjkl%22%2C%22zxcvbnm%22%5D%3Bfunction%20e(e)%7Bconst%20o%3Dn.map((n%3D%3En.indexOf(e)))%2Ct%3Do.findIndex((n%3D%3E-1!%3D%3Dn))%3Breturn%5Bt%2Co%5Bt%5D%5D%7Dconst%20o%3Ddocument.body%7C%7C%240%3Bo.innerHTML%3Do.innerHTML.replace(%2FLook%20between%20(the%20)%3F(%5Cw)%20and%20(the%20)%3F(%5Cw)%2Fgi%2C((...o)%3D%3E%7Bconst%20t%3Do%5B0%5D%2C%5Bc%2Cr%5D%3Do.slice(1).filter((n%3D%3En%26%261%3D%3D%3Dn.length)).map((n%3D%3En.toLowerCase()))%2Ci%3Dfunction(o%2Ct)%7Bconst%5Bc%2Cr%5D%3De(o)%2C%5Bi%2Cl%5D%3De(t)%3Bif(c%3D%3D%3Di%26%26r%3Cl)return%20n%5Bc%5D.slice(r%2B1%2Cl)%3Breturn%20null%7D(c%2Cr)%3Breturn%20console.log(i%2Co)%2Ci%3F%60%24%7Bt%7D%20%5B%5B%24%7Bi%7D%5D%5D%60%3At%7D))%7D)()%3B">Stop this BS</a>
+    <a href="javascript:(function()%7Bfunction%20replaceBody()%7Blet%20e%3D%5B%22qwertyuiop%22%2C%22asdfghjkl%22%2C%22zxcvbnm%22%5D%3Bfunction%20n(n)%7Blet%20t%3De.map(e%3D%3Ee.indexOf(n))%2Cl%3Dt.findIndex(e%3D%3E-1!%3D%3De)%3Breturn%5Bl%2Ct%5Bl%5D%5D%7Dlet%20t%3Ddocument.body%7C%7C%240%3Bt.innerHTML%3Dt.innerHTML.replace(%2F(%5Cw)%20and%20(the%20)%3F(key%20)%3F(letter%20)%3F(%5Cw)%2Fgi%2C(...t)%3D%3E%7Blet%20l%3Dt%5B0%5D%2C%5Br%2Ci%5D%3Dt.slice(1).filter(e%3D%3Ee%26%261%3D%3D%3De.length).map(e%3D%3Ee.toLowerCase())%2Co%3Dfunction%20t(l%2Cr)%7Blet%5Bi%2Co%5D%3Dn(l)%2C%5Bc%2Cu%5D%3Dn(r)%3Bif(i%3D%3D%3Dc%26%26o%3Cu)%7Blet%20a%3De%5Bi%5D%3Breturn%20a.slice(o%2B1%2Cu)%7Dreturn%20null%7D(r%2Ci)%3Breturn%20console.log(o%2Ct)%2Co%3F%60%24%7Bl%7D%20%5B%5B%24%7Bo%7D%5D%5D%60%3Al%7D)%7DreplaceBody()%3B%7D)()%3B">Stop this BS</a>
     <div>
       Then, click the bookmark "Stop this BS" whenever you encounter that good ol' "Look at the H and L on your keyboard" text on a website (probably twitter, I know).
       <br/>It isn't foolproof, but it works mostly.
@@ -26,7 +26,7 @@
             return null;
           }
         
-          const regex = /Look between (the )?(\w) and (the )?(\w)/gi;
+          const regex = /(\w) and (the )?(key )?(letter )?(\w)/gi;
           
           const e = document.body || $0;
           e.innerHTML = e.innerHTML.replace(regex, (...params) => {
